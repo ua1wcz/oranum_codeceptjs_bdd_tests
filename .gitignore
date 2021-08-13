@@ -1,0 +1,11 @@
+#Node
+node_modules/
+package-lock.json
+package.json
+
+# Reports and Logs
+*.log
+allureResults/
+output/
+log*.html
+report*.html

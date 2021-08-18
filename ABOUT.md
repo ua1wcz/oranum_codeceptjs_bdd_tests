@@ -21,6 +21,7 @@ Tip: You can use an API request to retrieve all live psychics to validate if the
 
 ##* The Api testcase is not for production! 
 ## Potentially unstable, because on high-loaded systems between two requests it is possible to change statuses.
+## It's a concept of working with the REST testcases. For correct use need to move all api functions to another helper\manager\wrapper with full api support.  
 
 ## REQ-2 - *Done.
 

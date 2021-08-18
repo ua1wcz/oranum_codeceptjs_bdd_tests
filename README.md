@@ -1,9 +1,9 @@
 
 RECOMMENDED SECTIONS TO READ AND FOLLOW:
-- 1. Clone this project from GitHub
-- 2. Install this project
-- 3. Run the tests locally
-- 4. Run dockerized tests
+1. Clone this project from GitHub
+2. Install this project
+3. Run the tests locally
+4. Run dockerized tests
 
 ## 1. Clone this project from [GitHub](https://github.com/ua1wcz/oranum_codeceptjs_bdd_tests)
 
@@ -138,10 +138,10 @@ Inform the argument `multi`. You are able to run in at least 3 different browser
 Regarding the environment or OS that you have, probably you might face flaky tests or even have other unexpected errors during the execution for this project. So, as alternative, you can install [Docker and Docker Compose](https://docs.docker.com/desktop/) to ensure an adequate environment for the tests. (For the first time, to build a Docker image and container, probably it may take a long time!)
 
 Installation steps:
-- 1. Download and Install Docker.
-- 2. For x64: Install wsl_update_x64.msi. This update will be offered when trying to start the docker on an x64 system. 
-- 3. docker pull codeceptjs/codeceptjs
-- 4. docker build -t codeceptjs/codeceptjs. Download and build container for codeceptjs testing.
+1. Download and Install Docker.
+2. For x64: Install wsl_update_x64.msi. This update will be offered when trying to start the docker on an x64 system. 
+3. docker pull codeceptjs/codeceptjs
+4. docker build -t codeceptjs/codeceptjs. Download and build container for codeceptjs testing.
 
 Having that requirement met, then follow the instructions below to build an image and run automatically the tests considering also strategies to pass `TAGS` (with or without `@`, like those shown previously under Section 3) and / or `CROSSBROWSER=multi`, if you want:
 

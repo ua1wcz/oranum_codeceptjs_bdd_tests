@@ -13,6 +13,9 @@ exports.config = {
       browser: 'chromium',
       waitForNavigation: "networkidle0"
     },
+	REST: {
+		endpoint: "https://api-gateway.docleradn.com/v1",
+	},
     SetupBlocks: {
       require: './tests/helpers/base.helper.js'
 	}

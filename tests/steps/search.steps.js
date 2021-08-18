@@ -2,35 +2,18 @@ const { I, HomePage, SearchPage } = inject();
 const Assert = require('assert');
 
 Then('each profile is displayed without duplicates', async () => {
-	let allInfluencers = await SearchPage.getAllInfluencersNames();
+	let allInfluencers = await SearchPage.getAllProfilesNames();
 	let uniqueNames = allInfluencers.filter((thatValue, iterIndex) => allInfluencers.indexOf(thatValue) === iterIndex)
 	Assert(allInfluencers.length === uniqueNames.length, "Found duplicate of the View Live page");
 });
 
 Then('all pictures are displayed', async () => {
-	let allInfluencers = await SearchPage.getAllInfluencersNames();
+	let allInfluencers = await SearchPage.getAllProfilesNames();
 	SearchPage.checkPicturesCount(allInfluencers.length)
 });
 
-Then('psychics are showed with different status:', (table) => {
-	for (let id in table.rows) {
-		const cells = table.rows[id].cells;
-		const status = cells[0].value;
-		
-		switch(status) {
-		  case "Live":
-			SearchPage.checkLiveStatus(status);
-			break;
-		  case "Offline":
-			SearchPage.checkOfflineStatus(status);
-			break;
-		  case "Busy":
-			SearchPage.checkBadgeBusyStatus(status);
-			break;
-		  default:
-			Assert("Unsupported status type");
-		}
-	}
+Then(/^psychics are showed with different "(.*)"$/, async (status) => {
+	await SearchPage.checkStatus(status);
 });
 
 When(/^I choose a "(.*)"$/, (topic) => {
@@ -46,15 +29,15 @@ When('I scroll to the end of search', () => {
 });
 
 Then(/^the "(.*)" match the current topic$/, async (profileMatch) => {
-	var psychicsResult = await SearchPage.getAllInfluencersNames();
+	var psychicsResult = await SearchPage.getAllProfilesNames();
 	var partialText = new RegExp(profileMatch, 'i');
 	var matchersOnly = [];
 
 	for (let i = 0; i < psychicsResult.length; i++) {
-		var found = psychicsResult[i].trim()
-		if (psychicsResult[i].match(partialText)){
-		matchersOnly.push(found);
-		SearchPage.checkExpectedPsychic(found);
+			var found = psychicsResult[i].trim()
+			if (psychicsResult[i].match(partialText)){
+			matchersOnly.push(found);
+			SearchPage.checkExpectedPsychic(found);
 		}
 	}
   
@@ -84,6 +67,6 @@ Then('only one result is displayed for "{word}"', async (profile) => {
 });
 
 Then('the "{word}" found can be accessed', async (profile) => {
-  await SearchPage.clickSearchResultDropdown(profile);
-  await SearchPage.checkAccessedProfileName(profile);
+  	await SearchPage.clickSearchResultDropdown(profile);
+  	await SearchPage.checkAccessedProfileName(profile);
 });

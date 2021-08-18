@@ -1,13 +1,14 @@
-const { I, CommonConstants, HomeConstants } = inject();
+const { I, CommonConstants, HomeConstants, SearchConstants } = inject();
 
 class HomePage {
-	goto() {
+	async goto() {
 		I.amOnPage(CommonConstants.oranumUrl);
 		I.waitForVisible(HomeConstants.oranumHomePageMarker);
 	}
 	
-	clickViewAllLivePsychicsButton() {
+	async clickViewAllLivePsychicsButton() {
 		I.click(HomeConstants.viewAllliveSearchButton);
+		I.waitForVisible(SearchConstants.searchHomePageMarker);
 	}
 	
 	clickFirstOfLivePsychicCards() {

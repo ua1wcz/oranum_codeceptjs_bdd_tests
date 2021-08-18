@@ -12,38 +12,15 @@ Oranum is the world’s largest spiritual community, and the only live webcam pl
 
 Specification
 
-## REQ-1   - *Done. *But unfortunately, without API using. 
+## REQ-1   - *Done. With API using.
 
 "View all live psychics" button is displayed on the home page.
 Clicking on the button should redirect the user to the search page and display all live psychics. 
 No duplicate psychic should be displayed and all of them should have a profile picture, nickname and the ones that are live should have a 'Live' status badge
 Tip: You can use an API request to retrieve all live psychics to validate if they have the live badge.
 
-*API. I've figured out the API, but I haven't quite figured out with the REST api support in the CodeceptJS. 
-What I know now:
-Link:
-POST: https://api-gateway.docleradn.com/v1/guest/home-page/home-pages/open?session={sessionId}&showTestModels=0
-It requires fields of the following type:
-\'sessionId\':\s\'([\w-]{33})\'
-\"configurationId\"\:\"([\w-]{8}-[\w-]{4}-[\w-]{4}-[\w-]{4}-[\w-]{12})\"
-\"viewerId\"\:\"([\w-]{8}-[\w-]{4}-[\w-]{4}-[\w-]{4}-[\w-]{12})\"
-
-The data can be taken from the website page. 
-In the output we get a Json with complete data. 
-For example:
-},
-                                "inExclusivePrivate": false,
-                                "isBirthday": false,
-                                "isExclusive": false,
-                                "isFavorite": false,
-                                "isNew": false,
-                                "languages": [
-                                    "lng_en",
-                                    "lng_es"
-                                ],
-                                "lastOnlineAt": null,
-                                "mainCategory": "oranum_broadcaster",
-This is a very interesting task. I think I can add API support to to these autotests. 
+##* The Api testcase is not for production! 
+## Potentially unstable, because on high-loaded systems between two requests it is possible to change statuses.
 
 ## REQ-2 - *Done.
 
@@ -97,3 +74,9 @@ Firefox - Above 68 version. Below - blank screen without any error message.
 Chrome - Above 68  version. Below - blank screen without any error message
 Opera - Above 56 version. Below - blank screen without any error message
 Yandex brower (14.12 latest) - Not supported. blank screen without any error message
+
+Bug found:
+https://api-gateway.docleradn.com/v1/guest/magazine?session=gbe42f1840ae93db7c8b675d9df48c23c&limit=50&influencerStatus=call_me&authorProduct=oranum&offset=0&orderByFromUS=desc&enableRegistrationAgeDebug=0&showTestModels=0
+///limit=50. Status 200. OK
+///limit=500. Status 400. Limit must be maximum 100. Ok.
+///limit from 51 to 100. Status 500. Internal server Error. Probably, it's a bug.

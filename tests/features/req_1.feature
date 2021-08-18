@@ -11,10 +11,13 @@ Feature: View All Psychics
 		Then all the psychics are displayed
 	
 	@status
-	Scenario: Psychic status displayed
+	Scenario Outline: Psychic status displayed
 		Given I scroll until the View All Live Psychics
 		When I click the View All Live Psychics button
-		Then psychics are showed with different status:
+		Then psychics are showed with different "<status>"
+
+		Examples:
+			| status  |
 			| Live    |
 			| Offline |
 			| Busy    |
